@@ -79,6 +79,11 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
         }
       }
     }
+  } else if (rawPageId === 'home') {
+    pageId = site.rootNotionDatabaseId
+
+    console.log(site)
+    recordMap = await getPage(pageId)
   } else {
     pageId = site.rootNotionPageId
 

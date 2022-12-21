@@ -26,8 +26,13 @@ if (!rootNotionPageId) {
 }
 
 // if you want to restrict pages to a single notion workspace (optional)
-export const rootNotionSpaceId: string | null = parsePageId(
+export const rootNotionSpaceId: string = parsePageId(
   getSiteConfig('rootNotionSpaceId', null),
+  { uuid: true }
+)
+
+export const rootNotionDatabaseId: string = parsePageId(
+  getSiteConfig('rootNotionDatabaseId', null),
   { uuid: true }
 )
 
@@ -157,6 +162,7 @@ export const site: Site = {
   name,
   rootNotionPageId,
   rootNotionSpaceId,
+  rootNotionDatabaseId,
   description
 }
 

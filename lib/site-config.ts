@@ -3,6 +3,7 @@ import * as types from './types'
 export interface SiteConfig {
   rootNotionPageId: string
   rootNotionSpaceId?: string
+  rootNotionDatabaseId?: string
 
   name: string
   domain: string
@@ -16,7 +17,7 @@ export interface SiteConfig {
   newsletter?: string
   youtube?: string
   zhihu?: string
-  mastodon?: string;
+  mastodon?: string
 
   defaultPageIcon?: string | null
   defaultPageCover?: string | null
