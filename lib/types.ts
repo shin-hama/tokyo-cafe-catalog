@@ -17,6 +17,13 @@ export interface PageProps {
   error?: PageError
 }
 
+export interface PageHeadProps extends PageProps {
+  title?: string
+  description?: string
+  image?: string
+  url?: string
+}
+
 export interface Params extends ParsedUrlQuery {
   pageId: string
 }
