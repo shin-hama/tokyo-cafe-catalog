@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import { NotionPage } from '@/components/NotionPage'
+import { CollectionInstance } from 'notion-types'
+
 import { domain } from '@/lib/config'
-import { resolveNotionPage } from '@/lib/resolve-notion-page'
+import { resolveNotionDatabaseContents } from '@/lib/resolve-notion-page'
 
 export const getStaticProps = async () => {
   try {
-    const props = await resolveNotionPage(domain, 'home')
+    const props = await resolveNotionDatabaseContents()
 
     return { props, revalidate: 10 }
   } catch (err) {
@@ -18,6 +19,9 @@ export const getStaticProps = async () => {
   }
 }
 
-export default function HomePage(props) {
-  return <NotionPage {...props} />
+export default function HomePage(props: CollectionInstance) {
+  console.log('home')
+  console.log(props)
+
+  return <></>
 }

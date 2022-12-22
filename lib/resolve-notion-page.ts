@@ -6,6 +6,7 @@ import { environment, pageUrlAdditions, pageUrlOverrides, site } from './config'
 import { db } from './db'
 import { getSiteMap } from './get-site-map'
 import { getPage } from './notion'
+import { queryDatabase } from './notion-client'
 
 export async function resolveNotionPage(domain: string, rawPageId?: string) {
   let pageId: string
@@ -79,11 +80,6 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
         }
       }
     }
-  } else if (rawPageId === 'home') {
-    pageId = site.rootNotionDatabaseId
-
-    console.log(site)
-    recordMap = await getPage(pageId)
   } else {
     pageId = site.rootNotionPageId
 
@@ -93,4 +89,10 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
 
   const props = { site, recordMap, pageId }
   return { ...props, ...(await acl.pageAcl(props)) }
+}
+
+export async function resolveNotionDatabaseContents() {
+  const pages = await queryDatabase('e55b9eb7a2a3438788ab21b4302ca1ac')
+
+  return { pages }
 }
