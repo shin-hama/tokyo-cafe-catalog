@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 
 import * as Fathom from 'fathom-client'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
 import posthog from 'posthog-js'
@@ -27,6 +29,7 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
+import { theme } from '@/lib/custom-theme'
 
 if (!isServer) {
   bootstrap()
@@ -61,5 +64,10 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }

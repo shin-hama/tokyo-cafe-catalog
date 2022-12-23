@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
 type Props = {
@@ -19,7 +20,9 @@ const PageCard: React.FC<Props> = ({ img, title }) => {
         </div>
       </CardMedia>
       <CardContent>
-        <Typography>{title}</Typography>
+        <Stack spacing={1}>
+          <Typography variant='subtitle1'>{title}</Typography>
+        </Stack>
       </CardContent>
     </Card>
   )
