@@ -9,7 +9,6 @@ import { PageBlock } from 'notion-types'
 import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
 import { NotionRenderer } from 'react-notion-x'
 import TweetEmbed from 'react-tweet-embed'
-import { useSearchParam } from 'react-use'
 
 import * as config from '@/lib/config'
 import * as types from '@/lib/types'
@@ -17,7 +16,9 @@ import { mapImageUrl } from '@/lib/map-image-url'
 import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
+import { useLiteMode } from '@/lib/use-lite-mode'
 
+import FilterableCollection from './FilterableCollection'
 import { Footer } from './Footer'
 import { GitHubShareButton } from './GitHubShareButton'
 import Layout from './Layout'
@@ -71,11 +72,6 @@ const Code = dynamic(() =>
   })
 )
 
-const Collection = dynamic(() =>
-  import('react-notion-x/build/third-party/collection').then(
-    (m) => m.Collection
-  )
-)
 const Equation = dynamic(() =>
   import('react-notion-x/build/third-party/equation').then((m) => m.Equation)
 )
@@ -148,14 +144,13 @@ export const NotionPage: React.FC<types.PageProps> = ({
   pageId
 }) => {
   const router = useRouter()
-  const lite = useSearchParam('lite')
 
   const components = React.useMemo(
     () => ({
       nextImage: Image,
       nextLink: Link,
       Code,
-      Collection,
+      Collection: FilterableCollection,
       Equation,
       Pdf,
       Modal,
@@ -169,17 +164,17 @@ export const NotionPage: React.FC<types.PageProps> = ({
   )
 
   // lite mode is for oembed
-  const isLiteMode = lite === 'true'
+  const isLiteMode = useLiteMode()
 
   const { isDarkMode } = useDarkMode()
 
   const siteMapPageUrl = React.useMemo(() => {
     const params: any = {}
-    if (lite) params.lite = lite
+    if (isLiteMode) params.lite = 'lite'
 
     const searchParams = new URLSearchParams(params)
-    return mapPageUrl(site, recordMap, searchParams)
-  }, [site, recordMap, lite])
+    return mapPageUrl(site, searchParams)
+  }, [site, isLiteMode])
 
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]]?.value
@@ -227,8 +222,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
     g.block = block
   }
 
-  const canonicalPageUrl =
-    !config.isDev && getCanonicalPageUrl(site, recordMap)(pageId)
+  const canonicalPageUrl = !config.isDev && getCanonicalPageUrl(site)(pageId)
 
   const socialImage = mapImageUrl(
     getPageProperty<string>('Social Image', block, recordMap) ||
@@ -250,8 +244,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
         description={socialDescription}
         image={socialImage}
         url={canonicalPageUrl}
-        isLiteMode={isLiteMode}
-        isDarkMode={isDarkMode}
       />
       <NotionRenderer
         bodyClassName={cs(

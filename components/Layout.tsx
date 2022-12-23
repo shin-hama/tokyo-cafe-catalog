@@ -3,25 +3,24 @@ import * as React from 'react'
 import BodyClassName from 'react-body-classname'
 
 import * as types from '@/lib/types'
+import { useDarkMode } from '@/lib/use-dark-mode'
+import { useLiteMode } from '@/lib/use-lite-mode'
 
 import { PageHead } from './PageHead'
 
-type Props = React.PropsWithChildren &
-  types.PageHeadProps & {
-    isLiteMode: boolean
-    isDarkMode: boolean
-  }
+type Props = React.PropsWithChildren & types.PageHeadProps
 const Layout: React.FC<Props> = ({
   children,
   description,
   image,
-  isLiteMode,
-  isDarkMode,
   pageId,
   site,
   title,
   url
 }) => {
+  const { isDarkMode } = useDarkMode()
+  const isLiteMode = useLiteMode()
+
   return (
     <>
       <PageHead

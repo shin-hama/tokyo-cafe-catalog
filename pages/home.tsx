@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { CollectionInstance } from 'notion-types'
-
+import Homepage from '@/components/HomePage'
 import { domain } from '@/lib/config'
 import { resolveNotionDatabaseContents } from '@/lib/resolve-notion-page'
 
@@ -19,9 +18,6 @@ export const getStaticProps = async () => {
   }
 }
 
-export default function HomePage(props: CollectionInstance) {
-  console.log('home')
-  console.log(props)
-
-  return <></>
+export default function HomePage(props) {
+  return <Homepage {...props} />
 }

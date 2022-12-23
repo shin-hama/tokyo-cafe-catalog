@@ -1,3 +1,4 @@
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { ExtendedRecordMap, PageMap } from 'notion-types'
 import { ParsedUrlQuery } from 'querystring'
 
@@ -22,6 +23,10 @@ export interface PageHeadProps extends PageProps {
   description?: string
   image?: string
   url?: string
+}
+
+export interface HomepageProps {
+  pages: Array<PageObjectResponse>
 }
 
 export interface Params extends ParsedUrlQuery {
