@@ -25,9 +25,12 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@fisch0920/use-dark-mode": "^2.4.0",
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
+    "@mui/material": "^5.11.1",
     "@notionhq/client": "^2.2.3",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.0.19",

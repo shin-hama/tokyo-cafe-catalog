@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Homepage from '@/components/HomePage'
+import Homepage from '@/components/Homepage'
 import { domain } from '@/lib/config'
 import { resolveNotionDatabaseContents } from '@/lib/resolve-notion-page'
 
