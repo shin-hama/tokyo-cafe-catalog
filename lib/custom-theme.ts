@@ -2,6 +2,9 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 export const theme = responsiveFontSizes(
   createTheme({
+    palette: {
+      mode: 'dark'
+    },
     typography: {
       fontSize: 14,
       fontFamily: ['Noto Sans', 'Noto Sans JP', 'Roboto', 'sans-serif'].join(

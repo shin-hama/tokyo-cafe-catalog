@@ -26,7 +26,7 @@ const Homepage: React.FC<HomepageProps> = ({ pages }) => {
               <Typography variant='h1' textAlign='center'>
                 Tokyo Cafe Catalog
               </Typography>
-              <Typography variant='body1' textAlign='center'>
+              <Typography variant='body2' textAlign='center'>
                 東京都内のカフェ巡り記録
               </Typography>
             </Stack>
@@ -47,8 +47,8 @@ const Homepage: React.FC<HomepageProps> = ({ pages }) => {
               ))}
             </Grid>
           </Container>
+          <Footer />
         </Stack>
-        <Footer />
       </Layout>
     </Box>
   )
