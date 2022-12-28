@@ -18,7 +18,6 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 import { useLiteMode } from '@/lib/use-lite-mode'
 
-import FilterableCollection from './FilterableCollection'
 import { Footer } from './Footer'
 import { GitHubShareButton } from './GitHubShareButton'
 import Layout from './Layout'
@@ -72,6 +71,11 @@ const Code = dynamic(() =>
   })
 )
 
+const Collection = dynamic(() =>
+  import('react-notion-x/build/third-party/collection').then(
+    (m) => m.Collection
+  )
+)
 const Equation = dynamic(() =>
   import('react-notion-x/build/third-party/equation').then((m) => m.Equation)
 )
@@ -150,7 +154,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
       nextImage: Image,
       nextLink: Link,
       Code,
-      Collection: FilterableCollection,
+      Collection,
       Equation,
       Pdf,
       Modal,

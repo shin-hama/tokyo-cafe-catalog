@@ -13,9 +13,10 @@ import { Footer } from '../Footer'
 import Layout from '../Layout'
 import PageCard from './PageCard'
 
-const Homepage: React.FC<HomepageProps> = ({ pages }) => {
+const Homepage: React.FC<HomepageProps> = ({ database, pages }) => {
   console.log('home')
   console.log(pages)
+  console.log(database)
 
   return (
     <Box className='notion-app notion'>

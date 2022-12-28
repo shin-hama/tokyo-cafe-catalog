@@ -1,4 +1,7 @@
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import {
+  GetDatabaseResponse,
+  PageObjectResponse
+} from '@notionhq/client/build/src/api-endpoints'
 import { ExtendedRecordMap, PageMap } from 'notion-types'
 import { ParsedUrlQuery } from 'querystring'
 
@@ -26,6 +29,7 @@ export interface PageHeadProps extends PageProps {
 }
 
 export interface HomepageProps {
+  database: GetDatabaseResponse
   pages: Array<PageObjectResponse>
 }
 

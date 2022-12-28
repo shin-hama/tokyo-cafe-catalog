@@ -3,6 +3,12 @@ import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { notionhq } from './notion-api'
 
+export async function getDatabase(id: string) {
+  const db = await notionhq.databases.retrieve({ database_id: id })
+
+  return db
+}
+
 /**
  * Use official notion sdk because notion-client-x is not support to query database.
  * @param id database id

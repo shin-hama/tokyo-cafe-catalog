@@ -6,7 +6,8 @@ import { environment, pageUrlAdditions, pageUrlOverrides, site } from './config'
 import { db } from './db'
 import { getSiteMap } from './get-site-map'
 import { getPage } from './notion'
-import { queryDatabase } from './notion-client'
+import { getDatabase, queryDatabase } from './notion-client'
+import { HomepageProps } from './types'
 
 export async function resolveNotionPage(domain: string, rawPageId?: string) {
   let pageId: string
@@ -91,11 +92,13 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
   return { ...props, ...(await acl.pageAcl(props)) }
 }
 
-export async function resolveNotionDatabaseContents() {
+export async function resolveNotionDatabaseContents(): Promise<HomepageProps> {
   const pageId = 'e55b9eb7a2a3438788ab21b4302ca1ac'
+  const database = await getDatabase(pageId)
   const pages = await queryDatabase(pageId)
 
   return {
+    database,
     pages
   }
 }
