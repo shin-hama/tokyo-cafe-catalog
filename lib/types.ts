@@ -43,7 +43,6 @@ export interface Site {
 
   rootNotionPageId: string
   rootNotionSpaceId: string
-  rootNotionDatabaseId: string
 
   // settings
   html?: string

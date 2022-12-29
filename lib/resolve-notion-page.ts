@@ -93,7 +93,7 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
 }
 
 export async function resolveNotionDatabaseContents(): Promise<HomepageProps> {
-  const pageId = 'e55b9eb7a2a3438788ab21b4302ca1ac'
+  const pageId = site.rootNotionPageId
   const database = await getDatabase(pageId)
   const pages = await queryDatabase(pageId)
 

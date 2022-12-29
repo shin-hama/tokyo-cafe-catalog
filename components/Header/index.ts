@@ -1,0 +1,1 @@
+export { NotionPageHeader } from './NotionPageHeader'

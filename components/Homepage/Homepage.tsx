@@ -15,7 +15,6 @@ import PageCard from './PageCard'
 
 const Homepage: React.FC<HomepageProps> = ({ database, pages }) => {
   console.log('home')
-  console.log(pages)
   console.log(database)
 
   return (
@@ -40,7 +39,7 @@ const Homepage: React.FC<HomepageProps> = ({ database, pages }) => {
                     <a>
                       <PageCard
                         img={page.cover?.[page.cover?.type]?.url}
-                        title={page.properties.Name['title'][0].plain_text}
+                        title={page.properties.Name['title'][0]?.plain_text}
                       />
                     </a>
                   </Link>

@@ -3,7 +3,6 @@ import * as types from './types'
 export interface SiteConfig {
   rootNotionPageId: string
   rootNotionSpaceId?: string
-  rootNotionDatabaseId?: string
 
   name: string
   domain: string

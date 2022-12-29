@@ -8,17 +8,20 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
 type Props = {
-  img: string
+  img?: string
   title: string
 }
 const PageCard: React.FC<Props> = ({ img, title }) => {
+  img && console.log(img)
   return (
     <Card>
-      <CardMedia sx={{ height: '250px' }}>
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-          <Image src={img} layout='fill' objectFit='cover' />
-        </div>
-      </CardMedia>
+      {img && (
+        <CardMedia sx={{ height: '250px' }}>
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Image src={img} layout='fill' objectFit='cover' />
+          </div>
+        </CardMedia>
+      )}
       <CardContent>
         <Stack spacing={1}>
           <Typography variant='subtitle1'>{title}</Typography>
