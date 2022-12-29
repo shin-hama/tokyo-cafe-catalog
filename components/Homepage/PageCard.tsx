@@ -12,7 +12,6 @@ type Props = {
   title: string
 }
 const PageCard: React.FC<Props> = ({ img, title }) => {
-  img && console.log(img)
   return (
     <Card>
       {img && (

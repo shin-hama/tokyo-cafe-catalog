@@ -95,7 +95,15 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
 export async function resolveNotionDatabaseContents(): Promise<HomepageProps> {
   const pageId = site.rootNotionPageId
   const database = await getDatabase(pageId)
-  const pages = await queryDatabase(pageId)
+  const pages = await queryDatabase({
+    database_id: pageId,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    }
+  })
 
   return {
     database,

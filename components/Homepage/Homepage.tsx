@@ -14,7 +14,6 @@ import Layout from '../Layout'
 import PageCard from './PageCard'
 
 const Homepage: React.FC<HomepageProps> = ({ database, pages }) => {
-  console.log('home')
   console.log(database)
 
   return (

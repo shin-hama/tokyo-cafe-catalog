@@ -1,5 +1,8 @@
 import { isFullPage } from '@notionhq/client'
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import {
+  PageObjectResponse,
+  QueryDatabaseParameters
+} from '@notionhq/client/build/src/api-endpoints'
 
 import { notionhq } from './notion-api'
 
@@ -15,19 +18,18 @@ export async function getDatabase(id: string) {
  * @returns
  */
 export async function queryDatabase(
-  id: string,
-  cursor?: string
+  props: QueryDatabaseParameters
 ): Promise<Array<PageObjectResponse>> {
   let results: Array<PageObjectResponse> = []
   try {
-    const pages = await notionhq.databases.query({
-      database_id: id,
-      start_cursor: cursor
-    })
+    const pages = await notionhq.databases.query(props)
     results = results.concat(pages.results.filter(isFullPage))
 
     if (pages.has_more) {
-      const nextPages = await queryDatabase(id, pages.next_cursor)
+      const nextPages = await queryDatabase({
+        ...props,
+        start_cursor: pages.next_cursor
+      })
       results = results.concat(nextPages)
     }
     return results
